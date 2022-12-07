@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class MainActivity extends AppCompatActivity {
     TextView textView;
 
@@ -15,11 +16,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         InnerAsyncTask innerAsyncTask = new InnerAsyncTask();
         innerAsyncTask.execute(20);
+
+        BGTask bgTask = new BGTask();
+        bgTask.execute("https://www.dsce.edu.in/");
     }
 
+
+
+    //Inner ASyncTask
     private class InnerAsyncTask extends AsyncTask<Integer, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -29,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Integer... integers) {
-            //example background task, can be replaced with any other background activity
 
+            //example background task, can be replaced with any other background activity
             for (int i = integers[0]; i >= 0; i--) {
                 textView.setText("Background Task is Running" + i);
                 SystemClock.sleep(1000);
